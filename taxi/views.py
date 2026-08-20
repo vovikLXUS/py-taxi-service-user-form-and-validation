@@ -110,7 +110,7 @@ class DriverLicenseUpdateView(LoginRequiredMixin, generic.UpdateView):
 
 @login_required
 def toggle_assign_to_car(request, pk):
-    driver = Driver.objects.get(id=request.user.id)
+    driver = request.user
     if Car.objects.filter(id=pk, drivers=driver).exists():
         driver.cars.remove(pk)
     else:
